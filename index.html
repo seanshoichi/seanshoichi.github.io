@@ -164,6 +164,49 @@
       100% { opacity: 0; transform: scaleY(0.2); transform-origin: bottom; }
     }
 
+    /* ââ TABLET ââ */
+    @media (max-width: 900px) {
+      nav { padding: 0 2rem; }
+      .hero-text { padding: 0 2.5rem 5rem; }
+    }
+
+    /* ââ MOBILE ââ */
+    @media (max-width: 600px) {
+      :root { --nav-h: 56px; }
+
+      /* Nav: shrink brand, hide links */
+      nav { padding: 0 1.2rem; }
+      .nav-brand .en {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+      }
+      .nav-brand .jp { font-size: 0.65rem; }
+      .nav-links { display: none; }
+
+      /* Hero: center everything */
+      #hero { justify-content: center; }
+      .hero-text {
+        padding: 0 1.5rem 5rem;
+        width: 100%;
+        text-align: center;
+      }
+      .hero-text h1 { letter-spacing: 0.06em; }
+      .hero-text .kanji { text-align: center; }
+      .hero-text .tagline { text-align: center; }
+      .scroll-indicator { display: none; }
+
+      /* Gallery: single column, edge-to-edge */
+      #gallery { padding: 0 0 4rem; }
+      .gallery-grid { column-gap: 0; }
+      .gallery-item { margin-bottom: 3px; }
+
+      /* Tighter section spacing */
+      .section-header { padding: 3rem 1.5rem 1.5rem; }
+      #about { padding: 2.5rem 1.5rem 4rem; }
+      #contact { padding: 3rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+
     /* ââ SECTION HEADERS ââ */
     .section-header {
       text-align: center;
