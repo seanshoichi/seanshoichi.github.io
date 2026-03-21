@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shoichi Photography</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --accent: #c8a97e;
+      --text: #e8e8e8;
+      --muted: #666;
+      --nav-h: 70px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.95), transparent);
+      transition: background 0.3s;
+    }
+    nav.scrolled { background: rgba(13,13,13,0.97); }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-brand .en {
+      font-size: 1.05rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .nav-brand .jp {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: #1a1a1a url('hero.jpg') center/cover no-repeat;
+      transform: scale(1.05);
+      animation: heroZoom 12s ease-out forwards;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1.0); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(13,13,13,0.5) 0%,
+        rgba(13,13,13,0.15) 50%,
+        rgba(13,13,13,0.6) 100%
+      );
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      padding: 0 4rem 6rem;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .hero-text .kanji {
+      display: block;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: var(--accent);
+      letter-spacing: 0.4em;
+      margin-top: 0.6rem;
+      font-weight: 300;
+    }
+    .hero-text .tagline {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1.4rem;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .scroll-indicator::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%   { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      100% { opacity: 0; transform: scaleY(0.2); transform-origin: bottom; }
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+    }
+    .section-header h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── GALLERY ── */
+    #gallery { padding: 0 1.5rem 6rem; }
+
+    .gallery-grid {
+      columns: 3;
+      column-gap: 6px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px)  { .gallery-grid { columns: 2; } }
+    @media (max-width: 600px)  { .gallery-grid { columns: 1; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 6px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: var(--surface);
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s ease, filter 0.6s ease;
+      filter: brightness(0.88);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1);
+    }
+    .gallery-item .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0);
+      transition: background 0.4s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .gallery-item:hover .img-overlay { background: rgba(13,13,13,0.3); }
+    .gallery-item .caption {
+      color: rgba(255,255,255,0);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.4s;
+    }
+    .gallery-item:hover .caption { color: rgba(255,255,255,0.8); }
+
+    /* Placeholder tiles (shown when no real image) */
+    .placeholder {
+      width: 100%;
+      display: block;
+      background: var(--surface);
+      border: 1px dashed #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: monospace;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.97);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      color: var(--muted);
+      font-size: 2rem;
+      cursor: pointer;
+      background: none; border: none;
+      transition: color 0.2s;
+    }
+    #lightbox-close:hover { color: var(--text); }
+    #lightbox-caption {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem 2rem 7rem;
+      text-align: center;
+    }
+    #about .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 2rem;
+    }
+    #about p {
+      color: var(--muted);
+      line-height: 2;
+      font-size: 0.95rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--surface);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    #contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    #contact a:hover { border-color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #333;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-brand">
+      <span class="en">Shoichi Photography</span>
+      <span class="jp">正一</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <h1>Shoichi<br>Photography</h1>
+      <span class="kanji">正一</span>
+      <span class="tagline">Landscape &amp; Nature</span>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-header">
+      <h2>Portfolio</h2>
+      <p>A selection of landscapes and nature captured in stillness.</p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- ╔══════════════════════════════════════════════════════════╗
+           ║  REPLACE each src="photo-X.jpg" with your image  ║
+           ║  and update the data-caption as you like.               ║
+           ╚══════════════════════════════════════════════════════════╝ -->
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-1.jpg" alt="Photo 1" data-caption="Into the mist"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:320px\'>photo-1.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Into the mist</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-2.jpg" alt="Photo 2" data-caption="Golden hour"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:480px\'>photo-2.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Golden hour</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-3.jpg" alt="Photo 3" data-caption="Still water"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:260px\'>photo-3.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Still water</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-4.jpg" alt="Photo 4" data-caption="Above the clouds"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:400px\'>photo-4.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Above the clouds</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-5.jpg" alt="Photo 5" data-caption="Last light"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:340px\'>photo-5.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Last light</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-6.jpg" alt="Photo 6" data-caption="Deep forest"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:280px\'>photo-6.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Deep forest</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-7.jpg" alt="Photo 7" data-caption="Dusk"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:360px\'>photo-7.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Dusk</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-8.jpg" alt="Photo 8" data-caption="Open sky"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:300px\'>photo-8.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Open sky</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="photo-9.jpg" alt="Photo 9" data-caption="Solitude"
+             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:420px\'>photo-9.jpg</div>'">
+        <div class="img-overlay"><span class="caption">Solitude</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <h2>About</h2>
+    </div>
+    <div class="divider"></div>
+    <p>
+      I'm Shoichi — a landscape and nature photographer drawn to the quiet moments between light and shadow.
+      My work explores the stillness found in wild places: mountain ridgelines at dawn, coastal fog rolling in,
+      forests holding their breath before a storm. Every frame is an attempt to slow time down.
+    </p>
+    <br>
+    <p style="color:#444; font-size:0.8rem;">
+      <!-- Edit the text above to be your own bio -->
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header" style="padding-bottom:1.5rem;">
+      <h2>Contact</h2>
+      <p>Available for commissions, prints, and collaborations.</p>
+    </div>
+    <a href="mailto:your@email.com">your@email.com</a>
+    <!-- Replace with your actual email address -->
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Shoichi Photography &nbsp;·&nbsp; 正一</span>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Lightbox
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      if (!img) return;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-caption').textContent = img.dataset.caption || '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Fade-in gallery items on scroll
+    const items = document.querySelectorAll('.gallery-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    items.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>
