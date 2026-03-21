@@ -25,7 +25,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* ââ NAV ââ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -74,7 +74,7 @@
     }
     .nav-links a:hover { color: var(--text); }
 
-    /* ── HERO ── */
+    /* ââ HERO ââ */
     #hero {
       position: relative;
       height: 100vh;
@@ -87,7 +87,7 @@
     .hero-img {
       position: absolute;
       inset: 0;
-      background: #1a1a1a url('hero.jpg') center/cover no-repeat;
+      background: #1a1a1a url('images/DSC_5031-2.jpg') center/cover no-repeat;
       transform: scale(1.05);
       animation: heroZoom 12s ease-out forwards;
     }
@@ -163,7 +163,7 @@
       100% { opacity: 0; transform: scaleY(0.2); transform-origin: bottom; }
     }
 
-    /* ── SECTION HEADERS ── */
+    /* ââ SECTION HEADERS ââ */
     .section-header {
       text-align: center;
       padding: 5rem 2rem 3rem;
@@ -183,7 +183,7 @@
       line-height: 1.8;
     }
 
-    /* ── GALLERY ── */
+    /* ââ GALLERY ââ */
     #gallery { padding: 0 1.5rem 6rem; }
 
     .gallery-grid {
@@ -219,37 +219,10 @@
       inset: 0;
       background: rgba(13,13,13,0);
       transition: background 0.4s;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.5rem;
     }
-    .gallery-item:hover .img-overlay { background: rgba(13,13,13,0.3); }
-    .gallery-item .caption {
-      color: rgba(255,255,255,0);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: color 0.4s;
-    }
-    .gallery-item:hover .caption { color: rgba(255,255,255,0.8); }
+    .gallery-item:hover .img-overlay { background: rgba(13,13,13,0.2); }
 
-    /* Placeholder tiles (shown when no real image) */
-    .placeholder {
-      width: 100%;
-      display: block;
-      background: var(--surface);
-      border: 1px dashed #2a2a2a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-family: monospace;
-    }
-
-    /* ── LIGHTBOX ── */
+    /* ââ LIGHTBOX ââ */
     #lightbox {
       display: none;
       position: fixed;
@@ -276,15 +249,8 @@
       transition: color 0.2s;
     }
     #lightbox-close:hover { color: var(--text); }
-    #lightbox-caption {
-      margin-top: 1rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
 
-    /* ── ABOUT ── */
+    /* ââ ABOUT ââ */
     #about {
       max-width: 700px;
       margin: 0 auto;
@@ -303,7 +269,7 @@
       font-size: 0.95rem;
     }
 
-    /* ── CONTACT ── */
+    /* ââ CONTACT ââ */
     #contact {
       background: var(--surface);
       padding: 5rem 2rem;
@@ -320,7 +286,7 @@
     }
     #contact a:hover { border-color: var(--accent); }
 
-    /* ── FOOTER ── */
+    /* ââ FOOTER ââ */
     footer {
       text-align: center;
       padding: 2rem;
@@ -336,7 +302,7 @@
   <nav id="nav">
     <div class="nav-brand">
       <span class="en">Shoichi Photography</span>
-      <span class="jp">正一</span>
+      <span class="jp">æ­£ä¸</span>
     </div>
     <ul class="nav-links">
       <li><a href="#gallery">Gallery</a></li>
@@ -351,7 +317,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-text">
       <h1>Shoichi<br>Photography</h1>
-      <span class="kanji">正一</span>
+      <span class="kanji">æ­£ä¸</span>
       <span class="tagline">Landscape &amp; Nature</span>
     </div>
     <div class="scroll-indicator">Scroll</div>
@@ -366,63 +332,59 @@
 
     <div class="gallery-grid">
 
-      <!-- ╔══════════════════════════════════════════════════════════╗
-           ║  REPLACE each src="photo-X.jpg" with your image  ║
-           ║  and update the data-caption as you like.               ║
-           ╚══════════════════════════════════════════════════════════╝ -->
-
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-1.jpg" alt="Photo 1" data-caption="Into the mist"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:320px\'>photo-1.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Into the mist</span></div>
+        <img src="images/DSC_1184.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-2.jpg" alt="Photo 2" data-caption="Golden hour"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:480px\'>photo-2.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Golden hour</span></div>
+        <img src="images/DSC_1370.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-3.jpg" alt="Photo 3" data-caption="Still water"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:260px\'>photo-3.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Still water</span></div>
+        <img src="images/DSC_4291.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-4.jpg" alt="Photo 4" data-caption="Above the clouds"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:400px\'>photo-4.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Above the clouds</span></div>
+        <img src="images/DSC_4298.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-5.jpg" alt="Photo 5" data-caption="Last light"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:340px\'>photo-5.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Last light</span></div>
+        <img src="images/DSC_4317.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-6.jpg" alt="Photo 6" data-caption="Deep forest"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:280px\'>photo-6.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Deep forest</span></div>
+        <img src="images/DSC_4331.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-7.jpg" alt="Photo 7" data-caption="Dusk"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:360px\'>photo-7.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Dusk</span></div>
+        <img src="images/DSC_4335.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-8.jpg" alt="Photo 8" data-caption="Open sky"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:300px\'>photo-8.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Open sky</span></div>
+        <img src="images/DSC_4342.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
       <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="photo-9.jpg" alt="Photo 9" data-caption="Solitude"
-             onerror="this.outerHTML='<div class=\'placeholder\' style=\'height:420px\'>photo-9.jpg</div>'">
-        <div class="img-overlay"><span class="caption">Solitude</span></div>
+        <img src="images/DSC_4349.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_5488-3.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_7236.jpg" alt="Photo">
+        <div class="img-overlay"></div>
       </div>
 
     </div>
@@ -435,13 +397,9 @@
     </div>
     <div class="divider"></div>
     <p>
-      I'm Shoichi — a landscape and nature photographer drawn to the quiet moments between light and shadow.
+      I'm Shoichi â a landscape and nature photographer drawn to the quiet moments between light and shadow.
       My work explores the stillness found in wild places: mountain ridgelines at dawn, coastal fog rolling in,
       forests holding their breath before a storm. Every frame is an attempt to slow time down.
-    </p>
-    <br>
-    <p style="color:#444; font-size:0.8rem;">
-      <!-- Edit the text above to be your own bio -->
     </p>
   </section>
 
@@ -451,35 +409,30 @@
       <h2>Contact</h2>
       <p>Available for commissions, prints, and collaborations.</p>
     </div>
-    <a href="mailto:your@email.com">your@email.com</a>
-    <!-- Replace with your actual email address -->
+    <a href="mailto:seanshoichi@gmail.com">seanshoichi@gmail.com</a>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2026 Shoichi Photography &nbsp;·&nbsp; 正一</span>
+    <span>Â© 2026 Shoichi Photography &nbsp;Â·&nbsp; æ­£ä¸</span>
   </footer>
 
   <!-- LIGHTBOX -->
   <div id="lightbox">
-    <button id="lightbox-close" onclick="closeLightbox()">×</button>
+    <button id="lightbox-close" onclick="closeLightbox()">Ã</button>
     <img id="lightbox-img" src="" alt="">
-    <div id="lightbox-caption"></div>
   </div>
 
   <script>
-    // Nav scroll effect
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Lightbox
     function openLightbox(el) {
       const img = el.querySelector('img');
       if (!img) return;
       document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox-caption').textContent = img.dataset.caption || '';
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -494,7 +447,6 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // Fade-in gallery items on scroll
     const items = document.querySelectorAll('.gallery-item');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
