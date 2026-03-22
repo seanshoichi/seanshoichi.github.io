@@ -121,12 +121,12 @@
     }
     .hero-text .kanji {
       display: block;
-      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-size: clamp(2rem, 4vw, 2.8rem);
       color: var(--accent);
       letter-spacing: 0.4em;
       margin-top: 0.6rem;
       font-weight: 300;
-      text-align: center;
+      text-align: left;
     }
     .hero-text .tagline {
       display: block;
@@ -332,6 +332,28 @@
     }
     #contact a:hover { border-color: var(--accent); }
 
+    /* ── LOAD MORE ── */
+    #load-more-wrap {
+      text-align: center;
+      padding: 2rem 0 4rem;
+    }
+    #load-more-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Georgia', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.8rem;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    #load-more-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -364,7 +386,6 @@
     <div class="hero-text">
       <h1>Shoichi<br>Photography</h1>
       <span class="kanji">&#32724;&#19968;</span>
-      <span class="tagline">Landscape &amp; Nature</span>
     </div>
     <div class="scroll-indicator">Scroll</div>
   </section>
@@ -639,6 +660,10 @@
       </div>
 
     </div>
+
+    <div id="load-more-wrap">
+      <button id="load-more-btn">More Photos</button>
+    </div>
   </section>
 
   <!-- ABOUT -->
@@ -676,11 +701,13 @@
   </div>
 
   <script>
+    // Nav scroll style
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
+    // Lightbox
     function openLightbox(el) {
       const img = el.querySelector('img');
       if (!img) return;
@@ -699,7 +726,7 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // Shuffle gallery order on each visit
+    // Shuffle gallery order on each visit (Fisher-Yates)
     const grid = document.querySelector('.gallery-grid');
     const items = Array.from(document.querySelectorAll('.gallery-item'));
     for (let i = items.length - 1; i > 0; i--) {
@@ -708,20 +735,41 @@
       [items[i], items[j]] = [items[j], items[i]];
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
+    // Load-more: start with 12, show 10 more per click
+    const INITIAL = 12;
+    const BATCH   = 10;
+    let shown = 0;
+    const btn = document.getElementById('load-more-btn');
+
+    // Hide all items and set up fade-in state
     items.forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
+      item.style.display    = 'none';
+      item.style.opacity    = '0';
+      item.style.transform  = 'translateY(20px)';
       item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(item);
     });
+
+    function showNext(count) {
+      const end = Math.min(shown + count, items.length);
+      for (let i = shown; i < end; i++) {
+        const item = items[i];
+        item.style.display = '';
+        const delay = (i - shown) * 60;
+        setTimeout(() => {
+          item.style.opacity   = '1';
+          item.style.transform = 'translateY(0)';
+        }, delay);
+      }
+      shown = end;
+      if (shown >= items.length) {
+        document.getElementById('load-more-wrap').style.display = 'none';
+      }
+    }
+
+    // Show first batch on load
+    showNext(INITIAL);
+
+    btn.addEventListener('click', () => showNext(BATCH));
   </script>
 </body>
 </html>
