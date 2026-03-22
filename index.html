@@ -494,7 +494,15 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    const items = document.querySelectorAll('.gallery-item');
+    // Shuffle gallery order on each visit
+    const grid = document.querySelector('.gallery-grid');
+    const items = Array.from(document.querySelectorAll('.gallery-item'));
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(items[j]);
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
