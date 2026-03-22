@@ -228,7 +228,7 @@
     }
 
     /* ── GALLERY ── */
-    #gallery { padding: 0 1.5rem 6rem; }
+    #gallery { padding: 0 1.5rem 0; }
 
     .gallery-grid {
       columns: 3;
@@ -298,7 +298,7 @@
     #about {
       max-width: 700px;
       margin: 0 auto;
-      padding: 4rem 2rem 7rem;
+      padding: 0 2rem 7rem;
       text-align: center;
     }
     #about .divider {
@@ -335,7 +335,7 @@
     /* ── LOAD MORE ── */
     #load-more-wrap {
       text-align: center;
-      padding: 2rem 0 4rem;
+      padding: 2rem 0 2rem;
     }
     #load-more-btn {
       background: transparent;
@@ -680,7 +680,7 @@
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="section-header" style="padding-bottom:1.5rem;">
+    <div class="section-header" style="padding-top:0; padding-bottom:1.5rem;">
       <h2>Contact/Social</h2>
       <p>Available for commissions, prints, and collaborations.</p>
     </div>
@@ -737,7 +737,7 @@
 
     // Load-more: mobile starts with 6/+5, desktop starts with 12/+10
     const isMobile = window.matchMedia('(max-width: 600px)').matches;
-    const INITIAL  = isMobile ? 6 : 12;
+    const INITIAL  = isMobile ? 5 : 12;
     const BATCH    = isMobile ? 5 : 10;
     let shown = 0;
     const btn = document.getElementById('load-more-btn');
