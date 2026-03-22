@@ -295,6 +295,24 @@
       transition: color 0.2s;
     }
     #lightbox-close:hover { color: var(--text); }
+    #lightbox-prev, #lightbox-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 2.8rem;
+      cursor: pointer;
+      background: none; border: none;
+      padding: 1rem 1.5rem;
+      transition: color 0.2s;
+      user-select: none;
+      line-height: 1;
+    }
+    #lightbox-prev { left: 0; }
+    #lightbox-next { right: 0; }
+    #lightbox-prev:hover, #lightbox-next:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      #lightbox-prev, #lightbox-next { display: none; }
+    }
 
     /* ── ABOUT ── */
     #about {
@@ -699,7 +717,9 @@
   <!-- LIGHTBOX -->
   <div id="lightbox">
     <button id="lightbox-close" onclick="closeLightbox()">×</button>
+    <button id="lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
     <img id="lightbox-img" src="" alt="">
+    <button id="lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
   </div>
 
   <script>
@@ -710,22 +730,47 @@
     });
 
     // Lightbox
-    function openLightbox(el) {
-      const img = el.querySelector('img');
+    let currentLightboxIndex = -1;
+
+    function showLightboxPhoto(idx) {
+      currentLightboxIndex = idx;
+      const img = items[idx].querySelector('img');
       if (!img) return;
       document.getElementById('lightbox-img').src = img.src;
+    }
+    function openLightbox(el) {
+      const idx = items.indexOf(el);
+      if (idx === -1) return;
+      showLightboxPhoto(idx);
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
+    }
+    function navigateLightbox(dir) {
+      const newIdx = (currentLightboxIndex + dir + items.length) % items.length;
+      showLightboxPhoto(newIdx);
     }
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('open');
       document.body.style.overflow = '';
     }
+    // Click backdrop to close
     document.getElementById('lightbox').addEventListener('click', function(e) {
       if (e.target === this) closeLightbox();
     });
+    // Keyboard: arrows navigate, Escape closes
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   navigateLightbox(-1);
+      if (e.key === 'ArrowRight')  navigateLightbox(1);
+    });
+    // Touch swipe for mobile
+    let _touchX = 0;
+    const lb = document.getElementById('lightbox');
+    lb.addEventListener('touchstart', e => { _touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - _touchX;
+      if (Math.abs(dx) > 50) navigateLightbox(dx < 0 ? 1 : -1);
     });
 
     // Shuffle gallery order on each visit (Fisher-Yates)
