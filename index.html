@@ -736,26 +736,29 @@
       [items[i], items[j]] = [items[j], items[i]];
     }
 
-    // Load-more: mobile starts with 6/+5, desktop starts with 12/+10
-    const isMobile = window.matchMedia('(max-width: 600px)').matches;
-    const INITIAL  = isMobile ? 4 : 12;
-    const BATCH    = isMobile ? 5 : 10;
-    let shown = 0;
-    const btn = document.getElementById('load-more-btn');
-
-    // Hide all items and set up fade-in state
+    // Remove ALL items from the DOM so the grid starts empty.
+    // We'll appendChild() them in batches — this guarantees each new
+    // batch is added at the end of the DOM, so the masonry layout
+    // places them below existing photos on both mobile and desktop.
     items.forEach(item => {
-      item.style.display    = 'none';
       item.style.opacity    = '0';
       item.style.transform  = 'translateY(20px)';
       item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      grid.removeChild(item);
     });
+
+    // Load-more counts: mobile 5 initial / +5, desktop 12 initial / +10
+    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+    const INITIAL  = isMobile ? 5 : 12;
+    const BATCH    = isMobile ? 5 : 10;
+    let shown = 0;
+    const btn = document.getElementById('load-more-btn');
 
     function showNext(count) {
       const end = Math.min(shown + count, items.length);
       for (let i = shown; i < end; i++) {
         const item = items[i];
-        item.style.display = '';
+        grid.appendChild(item);           // always goes to the end
         const delay = (i - shown) * 60;
         setTimeout(() => {
           item.style.opacity   = '1';
