@@ -25,7 +25,7 @@
       overflow-x: hidden;
     }
 
-    /* ââ NAV ââ */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -74,7 +74,7 @@
     }
     .nav-links a:hover { color: var(--text); }
 
-    /* ââ HERO ââ */
+    /* ── HERO ── */
     #hero {
       position: relative;
       height: 100vh;
@@ -164,13 +164,13 @@
       100% { opacity: 0; transform: scaleY(0.2); transform-origin: bottom; }
     }
 
-    /* ââ TABLET ââ */
+    /* ── TABLET ── */
     @media (max-width: 900px) {
       nav { padding: 0 2rem; }
       .hero-text { padding: 0 2.5rem 5rem; }
     }
 
-    /* ââ MOBILE ââ */
+    /* ── MOBILE ── */
     @media (max-width: 600px) {
       :root { --nav-h: 56px; }
 
@@ -207,7 +207,7 @@
       footer { padding: 1.5rem; }
     }
 
-    /* ââ SECTION HEADERS ââ */
+    /* ── SECTION HEADERS ── */
     .section-header {
       text-align: center;
       padding: 5rem 2rem 3rem;
@@ -227,7 +227,7 @@
       line-height: 1.8;
     }
 
-    /* ââ GALLERY ââ */
+    /* ── GALLERY ── */
     #gallery { padding: 0 1.5rem 6rem; }
 
     .gallery-grid {
@@ -266,7 +266,7 @@
     }
     .gallery-item:hover .img-overlay { background: rgba(13,13,13,0.2); }
 
-    /* ââ LIGHTBOX ââ */
+    /* ── LIGHTBOX ── */
     #lightbox {
       display: none;
       position: fixed;
@@ -294,7 +294,7 @@
     }
     #lightbox-close:hover { color: var(--text); }
 
-    /* ââ ABOUT ââ */
+    /* ── ABOUT ── */
     #about {
       max-width: 700px;
       margin: 0 auto;
@@ -315,7 +315,7 @@
     }
     #about p:last-child { margin-bottom: 0; }
 
-    /* ââ CONTACT ââ */
+    /* ── CONTACT ── */
     #contact {
       background: var(--surface);
       padding: 5rem 2rem;
@@ -332,7 +332,7 @@
     }
     #contact a:hover { border-color: var(--accent); }
 
-    /* ââ FOOTER ââ */
+    /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 2rem;
@@ -433,6 +433,211 @@
         <div class="img-overlay"></div>
       </div>
 
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/ColorSplashIntersectionSF.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_0642.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_1050.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_1549.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_1835.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2294-2.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2469.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2483-2-3.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2549-2.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2740.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2871-2.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2982%20%282%29.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_2982.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_3019.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_3043-2.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_3119.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_3867.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_5014.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_5303.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_5921-Enhanced-NR.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_7304.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/DSC_7420.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0384-2.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0475.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0486.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0609.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0688.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0695.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0718-2.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_0796.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_2701.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_2707.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/IMG_5563.JPG" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9336.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9570.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9760.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9904.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9909.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9914.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9922.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/_DSC9931.jpg" alt="Photo">
+        <div class="img-overlay"></div>
+      </div>
+
     </div>
   </section>
 
@@ -466,7 +671,7 @@
 
   <!-- LIGHTBOX -->
   <div id="lightbox">
-    <button id="lightbox-close" onclick="closeLightbox()">Ã</button>
+    <button id="lightbox-close" onclick="closeLightbox()">×</button>
     <img id="lightbox-img" src="" alt="">
   </div>
 
