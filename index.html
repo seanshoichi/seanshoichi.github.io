@@ -668,8 +668,8 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="section-header">
-      <h2>About</h2>
+    <div class="section-header" style="padding-bottom:0;">
+      <h2 style="margin-bottom:0;">About</h2>
     </div>
     <div class="divider"></div>
     <p>I've been shooting since 2011, based out of Livermore, CA.</p>
@@ -735,9 +735,10 @@
       [items[i], items[j]] = [items[j], items[i]];
     }
 
-    // Load-more: start with 12, show 10 more per click
-    const INITIAL = 12;
-    const BATCH   = 10;
+    // Load-more: mobile starts with 6/+5, desktop starts with 12/+10
+    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+    const INITIAL  = isMobile ? 6 : 12;
+    const BATCH    = isMobile ? 5 : 10;
     let shown = 0;
     const btn = document.getElementById('load-more-btn');
 
