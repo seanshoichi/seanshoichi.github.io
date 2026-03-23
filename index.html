@@ -399,31 +399,38 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    /* Dropdown — hidden on desktop, always flex on mobile (height-clipped) */
     .mobile-menu {
       display: none;
       position: fixed;
-      inset: 0;
+      top: var(--nav-h);
+      left: 0; right: 0;
       background: rgba(13,13,13,0.97);
-      z-index: 200;
+      z-index: 198;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
+      align-items: stretch;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
     }
-    .mobile-menu.open { display: flex; }
+    .mobile-menu.open { max-height: 260px; }
     .mobile-menu a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 0.75rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      transition: color 0.3s;
+      text-align: center;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.2s;
     }
-    .mobile-menu a:hover,
+    .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu a:active { color: var(--accent); }
 
     @media (max-width: 600px) {
       .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
     }
 
     /* ── FOOTER ── */
@@ -788,17 +795,26 @@
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', () => {
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = mobileMenu.classList.toggle('open');
       hamburger.classList.toggle('open', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
+    // Close when a link is tapped
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMobileMenu);
+    });
+    // Close when tapping outside the menu or hamburger
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.classList.contains('open') &&
+          !mobileMenu.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        closeMobileMenu();
+      }
     });
 
     // Nav scroll style
