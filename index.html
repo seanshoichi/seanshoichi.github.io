@@ -198,23 +198,34 @@
       .nav-brand .jp { font-size: 0.65rem; }
       .nav-links { display: none; }
 
-      /* Hero: portrait crop image + tighter height */
+      /* Hero: stacked layout — image on top, text directly below */
       #hero {
-        height: 70vh;
-        justify-content: center;
+        height: auto;
+        display: block;
+        overflow: visible;
       }
       .hero-img {
+        position: relative;
+        inset: auto;
+        display: block;
+        height: 80vw;
         background-image: url('images/hero-mobile.jpg');
-        background-position: center center;
+        background-position: center 33%;
+        background-size: cover;
       }
+      .hero-overlay { display: none; }
       .hero-text {
-        padding: 0 1.5rem 2.5rem;
-        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
+        padding: 2rem 1.5rem 1.5rem;
+        background: var(--bg);
       }
       .hero-text h1 { letter-spacing: 0.06em; }
       .hero-text .kanji { text-align: center; }
-      .hero-text .tagline { text-align: center; }
+      .hero-text .tagline { display: none; }
       .scroll-indicator { display: none; }
 
       /* Gallery: single column, edge-to-edge */
