@@ -198,33 +198,46 @@
       .nav-brand .jp { font-size: 0.65rem; }
       .nav-links { display: none; }
 
-      /* Hero: stacked layout — image on top, text directly below */
+      /* Hero: fixed-height overlay — eclipse stays centered via bg-position */
       #hero {
-        height: auto;
-        display: block;
-        overflow: visible;
+        position: relative;
+        height: 60vh;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
       }
       .hero-img {
-        position: relative;
-        inset: auto;
-        display: block;
-        height: 80vw;
-        background-image: url('images/hero-mobile.jpg');
-        background-position: center 33%;
-        background-size: cover;
+        position: absolute;
+        inset: 0;
+        height: auto;
+        background: #1a1a1a url('images/DSC_5031-2.jpg') 53% 57% / cover no-repeat;
       }
-      .hero-overlay { display: none; }
+      .hero-overlay {
+        display: block;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 38%,
+          rgba(13,13,13,0.65) 62%,
+          rgba(13,13,13,0.96) 100%
+        );
+      }
       .hero-text {
         position: relative;
+        z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 2rem 1.5rem 1.5rem;
-        background: var(--bg);
+        padding: 0 1.5rem 2rem;
+        background: transparent;
       }
-      .hero-text h1 { letter-spacing: 0.06em; }
-      .hero-text .kanji { text-align: center; }
+      .hero-text h1 {
+        font-size: clamp(1.9rem, 7vw, 2.6rem);
+        letter-spacing: 0.06em;
+      }
+      .hero-text .kanji { text-align: center; font-size: 1.75rem; }
       .hero-text .tagline { display: none; }
       .scroll-indicator { display: none; }
 
